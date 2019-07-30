@@ -1,0 +1,7 @@
+{
+  "name": "vsdatax-neo4jWriter",
+  "class": "vsdatax.writer.neo4j.VsNeo4jWriter",
+  "description": " ",
+  "developer": "JerryHuang"
+}
+

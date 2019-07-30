@@ -1,0 +1,67 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 5
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "mysqlreader",
+          "parameter": {
+            "username": "xxxx",
+            "password": "xxxx",
+            "where": "",
+            "connection": [
+              {
+                "querySql": [
+                  "select * from sd_line2 a,sd_xiaoqu2 b where a.line_id=b.line_id"
+                ],
+                "jdbcUrl": [
+                  "jdbc:mysql://mydev:3306/xxxx?useUnicode=true"
+                ]
+              }
+            ]
+          }
+        },
+        "writer": {
+          "name": "vsdatax-neo4jWriter",
+          "parameter": {
+            "db.uri": "bolt://localhost:7687",
+            "db.username": "neo4j",
+            "db.password": "xxxxx",
+            "batchSize": "100",
+            "column": [
+              "line_id",
+              "line_name",
+              "people_id",
+              "xiaoqu_id",
+              "xiaoqu_name",
+              "line_id1"
+            ],
+            "create.type":"FULL",
+            "create.FULL.mode":"MERGE",
+
+            "create.FULL.src.label":"线路",
+            "create.FULL.src.mode":"MERGE",
+            "create.FULL.src.pattern":"en_line_id:#line_id",
+            "create.FULL.src.create.property.map":"en_line_name:#line_name",
+            "create.FULL.src.merge.property.map":"en_line_name:#line_name",
+            "create.FULL.src.degree.dir":"-",
+
+
+            "create.FULL.target.label":"小区",
+            "create.FULL.target.mode":"MERGE",
+            "create.FULL.target.pattern":"en_xiaoqu_id:#xiaoqu_id",
+            "create.FULL.target.create.property.map":"en_xiaoqu_name:#xiaoqu_name",
+            "create.FULL.target.merge.property.map":"en_xiaoqu_name:#xiaoqu_name",
+            "create.FULL.target.degree.dir":"->",
+
+            "create.FULL.label":"覆盖小区"
+          }
+        }
+      }
+    ]
+  }
+}
