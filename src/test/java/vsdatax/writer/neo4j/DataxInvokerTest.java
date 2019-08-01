@@ -25,7 +25,12 @@ public class DataxInvokerTest {
         //        jsonFile = "D:\\work\\projs\\incubator\\vsetl\\vsdatax\\plugins\\neo4j-writer\\scripts\\mysql2neo4j_node2.json";
         jsonFile = "D:\\work\\projs\\incubator\\vsetl\\vsdatax\\plugins\\neo4j-writer\\scripts\\mysql2neo4j_relationship.json";
 //        jsonFile = "D:\\work\\projs\\incubator\\vsetl\\vsdatax\\plugins\\neo4j-writer\\scripts\\mysql2neo4j_full.json";
-        jsonFile = "D:\\work\\projs\\incubator\\vsetl\\vsdatax\\plugins\\neo4j-writer\\scripts\\hz_demo\\public_demo_full.json";
+        jsonFile = "D:\\work\\projs\\incubator\\vsetl\\vsdatax\\plugins\\neo4j-writer\\scripts_public_demo\\public_demo_full.json";
+        jsonFile = "D:\\work\\projs\\incubator\\vsetl\\vsdatax\\plugins\\neo4j-writer\\scripts_public_demo\\public_demo_book.json";
+        jsonFile = "D:\\work\\projs\\incubator\\vsetl\\vsdatax\\plugins\\neo4j-writer\\scripts_public_demo\\public_demo_publisher.json";
+        jsonFile = "D:\\work\\projs\\incubator\\vsetl\\vsdatax\\plugins\\neo4j-writer\\scripts_public_demo\\public_demo_book_relationship.json";
+        jsonFile = "D:\\work\\projs\\incubator\\vsetl\\vsdatax\\plugins\\neo4j-writer\\scripts_public_demo\\public_demo_full.json";
+        jsonFile = "D:\\work\\projs\\incubator\\vsetl\\vsdatax\\plugins\\neo4j-writer\\scripts_public_demo\\public_demo_ql.json";
 
         String[] datxArgs = {"-job", jsonFile, "-mode", "standalone", "-jobid", "-1"};
         try {

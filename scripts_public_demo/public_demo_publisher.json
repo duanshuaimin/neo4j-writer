@@ -1,0 +1,50 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 5
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "mysqlreader",
+          "parameter": {
+            "username": "root",
+            "password": "longshine",
+            "where": "",
+            "connection": [
+              {
+                "querySql": [
+                  "select * from t_publisher  "
+                ],
+                "jdbcUrl": [
+                  "jdbc:mysql://mydev:3306/hyt_demo?useUnicode=true"
+                ]
+              }
+            ]
+          }
+        },
+        "writer": {
+          "name": "vsdatax-neo4jWriter",
+          "parameter": {
+            "db.uri": "bolt://localhost:7687",
+            "db.username": "neo4j",
+            "db.password": "1",
+            "batchSize": "100",
+            "column": [
+
+              "publisher_id",
+              "publisher_name"
+            ],
+            "create.type":"NODE",
+            "create.NODE.label":"PUBLISHER",
+            "create.NODE.mode":"MERGE",
+            "create.NODE.merge.pattern":"publisherId:#publisher_id",
+            "create.NODE.property.map":"publisherName:#publisher_name"
+          }
+        }
+      }
+    ]
+  }
+}

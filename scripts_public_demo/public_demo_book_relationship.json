@@ -1,0 +1,57 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 5
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "mysqlreader",
+          "parameter": {
+            "username": "root",
+            "password": "xx",
+            "where": "",
+            "connection": [
+              {
+                "querySql": [
+                  "select * from t_publisher_book"
+                ],
+                "jdbcUrl": [
+                  "jdbc:mysql://172.20.240.120:3306/hyt_demo?useUnicode=true"
+                ]
+              }
+            ]
+          }
+        },
+        "writer": {
+          "name": "vsdatax-neo4jWriter",
+          "parameter": {
+            "db.uri": "bolt://localhost:7687",
+            "db.username": "neo4j",
+            "db.password": "x",
+            "batchSize": "100",
+            "column": [
+              "id",
+              "book_id",
+              "publisher_id",
+              "publish_time"
+            ],
+            "create.type":"RELATIONSHIP",
+            "create.RELATIONSHIP.src.label":"PUBLISHER",
+            "create.RELATIONSHIP.src.pattern":"publisherId:#publisher_id",
+            "create.RELATIONSHIP.src.degree.dir":"-",
+            "create.RELATIONSHIP.target.label":"BOOK",
+            "create.RELATIONSHIP.target.pattern":"bookId:#book_id",
+            "create.RELATIONSHIP.target.degree.dir":"->",
+            "create.RELATIONSHIP.label":"publish",
+            "create.RELATIONSHIP.mode":"MERGE",
+            "create.RELATIONSHIP.create.property.map":"dbId:#id,publishTime:#publish_time",
+            "create.RELATIONSHIP.merge.property.map":"dbId:#id,publishTime:#publish_time"
+          }
+        }
+      }
+    ]
+  }
+}

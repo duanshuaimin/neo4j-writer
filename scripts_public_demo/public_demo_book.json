@@ -1,0 +1,50 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 5
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "mysqlreader",
+          "parameter": {
+            "username": "root",
+            "password": "x",
+            "where": "",
+            "connection": [
+              {
+                "querySql": [
+                  "select * from t_book  "
+                ],
+                "jdbcUrl": [
+                  "jdbc:mysql://mydev:3306/hyt_demo?useUnicode=true"
+                ]
+              }
+            ]
+          }
+        },
+        "writer": {
+          "name": "vsdatax-neo4jWriter",
+          "parameter": {
+            "db.uri": "bolt://localhost:7687",
+            "db.username": "neo4j",
+            "db.password": "x",
+            "batchSize": "100",
+            "column": [
+              "id",
+              "book_name",
+              "book_desc"
+            ],
+            "create.type":"NODE",
+            "create.NODE.label":"BOOK",
+            "create.NODE.mode":"MERGE",
+            "create.NODE.merge.pattern":"bookId:#id",
+            "create.NODE.property.map":"bookName:#book_name,bookDesc:#book_desc"
+          }
+        }
+      }
+    ]
+  }
+}

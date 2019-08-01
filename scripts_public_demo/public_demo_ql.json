@@ -1,0 +1,50 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 5
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "mysqlreader",
+          "parameter": {
+            "username": "root",
+            "password": "x",
+            "where": "",
+            "connection": [
+              {
+                "querySql": [
+                  "select * from kf_worksheet "
+                ],
+                "jdbcUrl": [
+                  "jdbc:mysql://mydev:3306/hyt_demo?useUnicode=true"
+                ]
+              }
+            ]
+          }
+        },
+        "writer": {
+          "name": "vsdatax-neo4jWriter",
+          "parameter": {
+            "db.uri": "bolt://localhost:7687",
+            "db.username": "neo4j",
+            "db.password": "x",
+            "batchSize": "100",
+            "column": [
+              "id",
+              "phone_num",
+              "hh",
+              "content",
+              "call_time"
+            ],
+            "create.type": "QL",
+            "create.QL.ql": "UNWIND  $batches AS batch MERGE  (s:UserPhone_datax_node{phone_num:batch.phone_num}) ON CREATE  SET s.phone_num=batch.phone_num MERGE  (t:HH_datax_node{hh:batch.hh}) ON CREATE  SET t.hh=batch.hh MERGE(s)-[rel:Belongs_datax]->(t) ON CREATE  SET rel.content=batch.content,rel.call_time=batch.call_time",
+            "create.QL.batchKey": "batches"
+          }
+        }
+      }
+    ]
+  }
+}

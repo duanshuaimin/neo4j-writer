@@ -10,8 +10,8 @@
         "reader": {
           "name": "mysqlreader",
           "parameter": {
-            "username": "xxxx",
-            "password": "xxxx",
+            "username": "root",
+            "password": "x",
             "where": "",
             "connection": [
               {
@@ -19,7 +19,7 @@
                   "select * from sd_line2 a,sd_xiaoqu2 b where a.line_id=b.line_id"
                 ],
                 "jdbcUrl": [
-                  "jdbc:mysql://mydev:3306/xxxx?useUnicode=true"
+                  "jdbc:mysql://mydev:3306/hyt_demo?useUnicode=true"
                 ]
               }
             ]
@@ -30,7 +30,7 @@
           "parameter": {
             "db.uri": "bolt://localhost:7687",
             "db.username": "neo4j",
-            "db.password": "xxxxx",
+            "db.password": "x",
             "batchSize": "100",
             "column": [
               "line_id",
